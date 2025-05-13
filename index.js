@@ -45,6 +45,16 @@ async function run(){
 
         })
         
+        app.get('/users/:id', async(req,res)=>{
+          const id = req.params.id;
+          const query = {_id:new ObjectId(id)}
+          const result = await userCollection.findOne(query)
+          res.send(result)
+        })
+
+
+
+
         app.post('/users',async(req,res)=>{
           const newUser = req.body;
           const result = await userCollection.insertOne(newUser);
